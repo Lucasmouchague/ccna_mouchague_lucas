@@ -310,3 +310,15 @@ rtt min/avg/max/mdev = 4.990/5.103/5.217/0.134 ms
 ```
 
 ### Netcat VM1 --> VM2
+```
+[nawak@localhost ~]$ nc vm2  5454
+miaou
+netcat
+```
+
+### Netcat VM2 --> VM1
+```
+[nawak@localhost ~]$ nc -l 5454
+Voici un joli netcat
+miaou
+```

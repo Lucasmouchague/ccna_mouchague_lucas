@@ -174,3 +174,4 @@ tcp    ESTAB      0      36               192.168.127.10:2222                   
 ```
 # III Routage Statique
 ## 1.Préparation des hôtes
+something

@@ -174,4 +174,139 @@ tcp    ESTAB      0      36               192.168.127.10:2222                   
 ```
 # III Routage Statique
 ## 1.Préparation des hôtes
-something
+### Préparation virtualbox (PC1)
+Réseau host-only --> 192.168.101.0/24
+
+VM1 --> 192.168.101.10
+
+### Check
+#### PC1 --> PC2
+```
+PS C:\Users\lukea> ping 192.168.112.2
+
+Envoi d’une requête 'Ping'  192.168.112.2 avec 32 octets de données :
+Réponse de 192.168.112.2 : octets=32 temps=7 ms TTL=128
+Réponse de 192.168.112.2 : octets=32 temps=4 ms TTL=128
+Réponse de 192.168.112.2 : octets=32 temps=4 ms TTL=128
+Réponse de 192.168.112.2 : octets=32 temps=4 ms TTL=128
+
+Statistiques Ping pour 192.168.112.2:
+    Paquets : envoyés = 4, reçus = 4, perdus = 0 (perte 0%),
+Durée approximative des boucles en millisecondes :
+    Minimum = 4ms, Maximum = 7ms, Moyenne = 4ms
+```
+#### VM1 --> PC1
+```
+[nawak@localhost ~]$ ping 192.168.101.1
+PING 192.168.101.1 (192.168.101.1) 56(84) bytes of data.
+64 bytes from 192.168.101.1: icmp_seq=1 ttl=128 time=0.284 ms
+64 bytes from 192.168.101.1: icmp_seq=2 ttl=128 time=0.308 ms
+64 bytes from 192.168.101.1: icmp_seq=3 ttl=128 time=0.300 ms
+64 bytes from 192.168.101.1: icmp_seq=4 ttl=128 time=0.295 ms
+^C
+--- 192.168.101.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3000ms
+rtt min/avg/max/mdev = 0.284/0.296/0.308/0.022 ms
+```
+## 2. Configuration du routage
+### Bilan des IP
+PC1 (ethernet) --> 192.168.112.1
+PC2 (ethernet) --> 192.168.112.2
+VM1 --> 192.168.101.10
+VM2 --> 192.168.102.10
+
+### Configuration des routes (PC1)
+```
+route add 192.168.102.0/24 mask 255.255.255.0 192.168.112.2
+```
+
+```
+PS C:\Windows\system32> ping 192.168.102.1
+
+Envoi d’une requête 'Ping'  192.168.102.1 avec 32 octets de données :
+Réponse de 192.168.102.1 : octets=32 temps=4 ms TTL=128
+Réponse de 192.168.102.1 : octets=32 temps=4 ms TTL=128
+Réponse de 192.168.102.1 : octets=32 temps=4 ms TTL=128
+Réponse de 192.168.102.1 : octets=32 temps=6 ms TTL=128
+```
+
+
+### Configuration des routes (VM1)
+```
+sudo ip route add 192.168.102.0/24 via 192.168.101.1 dev enp0s8
+```
+Ping 1:
+```
+[nawak@localhost ~]$ ping 192.168.112.2
+PING 192.168.112.2 (192.168.112.2) 56(84) bytes of data.
+64 bytes from 192.168.112.2: icmp_seq=1 ttl=127 time=5.05 ms
+64 bytes from 192.168.112.2: icmp_seq=2 ttl=127 time=5.03 ms
+^C
+--- 192.168.112.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 5.034/5.043/5.052/0.009 ms
+```
+Ping 2:
+```
+[nawak@localhost ~]$ ping 192.168.101.1
+PING 192.168.101.1 (192.168.101.1) 56(84) bytes of data.
+64 bytes from 192.168.101.1: icmp_seq=1 ttl=128 time=0.250 ms
+64 bytes from 192.168.101.1: icmp_seq=2 ttl=128 time=0.238 ms
+^C
+--- 192.168.101.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.238/0.244/0.250/0.006 ms
+```
+
+## 3. Configuration des noms de domaine
+### Fichier de configuration hôte (PC1)
+```
+127.0.0.1 pc1.tp3.b1
+192.168.112.2 pc2.tp3.b1
+192.168.102.10 vm2.tp3.b1
+192.168.101.10 vm1.tp3.b1
+```
+### Fichier de configuraion serveur (VM1)
+```
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.101.10 vm1 vm1.tp3.b1
+192.168.102.10 vm2 vm2.tp3.b1
+192.168.112.2 pc2 pc2.tp3.b1
+192.168.112.1 pc1 pc1.tp3.b1
+```
+### Ping VM1 --> PC1
+```
+[nawak@localhost ~]$ ping pc1
+PING pc1 (192.168.112.1) 56(84) bytes of data.
+64 bytes from pc1 (192.168.112.1): icmp_seq=1 ttl=127 time=0.208 ms
+64 bytes from pc1 (192.168.112.1): icmp_seq=2 ttl=127 time=0.288 ms
+^C
+--- pc1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.208/0.248/0.288/0.040 ms
+```
+### Ping VM1 --> PC2
+```
+[nawak@localhost ~]$ ping pc2
+PING pc2 (192.168.112.2) 56(84) bytes of data.
+64 bytes from pc2 (192.168.112.2): icmp_seq=1 ttl=127 time=4.81 ms
+64 bytes from pc2 (192.168.112.2): icmp_seq=2 ttl=127 time=7.19 ms
+^C
+--- pc2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 4.814/6.004/7.195/1.193 ms
+```
+### Ping VM1 --> VM2
+```
+[nawak@localhost ~]$ ping vm2
+PING vm2 (192.168.102.10) 56(84) bytes of data.
+64 bytes from vm2 (192.168.102.10): icmp_seq=1 ttl=62 time=5.21 ms
+64 bytes from vm2 (192.168.102.10): icmp_seq=2 ttl=62 time=4.99 ms
+^C
+--- vm2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 4.990/5.103/5.217/0.134 ms
+```
+
+### Netcat VM1 --> VM2

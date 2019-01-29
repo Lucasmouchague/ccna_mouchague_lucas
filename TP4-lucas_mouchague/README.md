@@ -298,4 +298,5 @@ Le réseau NAT est présent qui nous a permis de récuperer la page www.google.c
 #### Sur PC
 Page d'acceuil par défaut de NGINX
 
-### Install et config du serveur Web
+### Interception du trafic
+(https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/http.pcap)

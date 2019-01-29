@@ -261,3 +261,41 @@ Le réseau NAT est présent qui nous a permis de récuperer la page www.google.c
 
 ## B. Interception d'une communication netcat
 (https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/nc.pcap)
+
+## HEY j'ai une idée:
+(https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/nc_ko.pcap)
+
+## C. Inteception d'un trafic HTTP (bonus)
+### Install et config du serveur Web
+#### Sur serveur1
+```
+[nawak@server1 ~]$ curl localhost:80
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>Test Page for the Nginx HTTP Server on Fedora</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style type="text/css">
+            /*<![CDATA[*/
+
+            etc etc...
+```
+#### Sur router1
+```
+[nawak@server1 ~]$ curl localhost:80
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>Test Page for the Nginx HTTP Server on Fedora</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style type="text/css">
+            /*<![CDATA[*/
+
+            etc etc...
+```
+#### Sur PC
+Page d'acceuil par défaut de NGINX
+
+### Install et config du serveur Web

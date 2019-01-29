@@ -257,7 +257,7 @@ Après curl:
 Le réseau NAT est présent qui nous a permis de récuperer la page www.google.com.
 # 2. Wireshark
 ## A. Interception d'ARP et ping
-
+(https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/ping.pcap)
 
 ## B. Interception d'une communication netcat
 (https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/nc.pcap)

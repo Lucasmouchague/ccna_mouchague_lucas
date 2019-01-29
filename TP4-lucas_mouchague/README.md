@@ -254,6 +254,8 @@ Après curl:
 10.0.3.2 dev enp0s8 lladdr 52:54:00:12:35:02 REACHABLE
 10.1.0.1 dev enp0s3 lladdr 0a:00:27:00:00:0e REACHABLE
 ```
-Le réseau NAT est présent qui nous a permis de récuperer la page google.com.
+Le réseau NAT est présent qui nous a permis de récuperer la page www.google.com.
 # 2. Wireshark
 ## A. Interception d'ARP et ping
+![ping capture]
+()

@@ -258,3 +258,6 @@ Le réseau NAT est présent qui nous a permis de récuperer la page www.google.c
 # 2. Wireshark
 ## A. Interception d'ARP et ping
 ![ping capture](https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/ping%20capture.PNG)
+ouai déso du screen mais la flemme de tout écrire :)
+
+## B. Interception d'une communication netcat

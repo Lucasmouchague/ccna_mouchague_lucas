@@ -258,12 +258,15 @@ Le réseau NAT est présent qui nous a permis de récuperer la page www.google.c
 # 2. Wireshark
 ## A. Interception d'ARP et ping
 (https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/ping.pcap)
+On vois au niveau de la requete 2 et 3 que on demande au broadcast qui est le destinataire et au niveau de la requete 4 on nous renvoie l'adresse mac correspondante a notre cible.
 
 ## B. Interception d'une communication netcat
 (https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/nc.pcap)
+La première requete envoi un paquet de synchronisation(SYN) et la cible répond par un paquet de synchronisation(SYN) et d'acquittement(ACK) pour synchroniser la communication via netcat.
 
 ## HEY j'ai une idée:
 (https://github.com/Lucasmouchague/ccna_mouchague_lucas/blob/master/TP4-lucas_mouchague/nc_ko.pcap)
+La premiere requete demande une synchronisation(SYN) mais au niveau de la seconde requete nous renvois que la cible n'est pas accessible donc on recommence la demande de synchronisation.
 
 ## C. Inteception d'un trafic HTTP (bonus)
 ### Install et config du serveur Web

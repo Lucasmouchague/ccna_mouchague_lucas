@@ -1,7 +1,7 @@
-#TP5-Lucas_Mouchague
+# TP5-Lucas_Mouchague
 
 ## Checklist IP VMs
-- [X] Définition des IPs statiques
+- Définition des IPs statiques
 Sur chaque VM :
 * client1
 * client2

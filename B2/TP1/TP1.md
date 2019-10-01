@@ -35,11 +35,11 @@
 ```
 ### Déterminer si elles sont elles ont une IP statique ou DHCP
 ```
-
+*waiting*
 ``` 
 ### Afficher la table de routage
 ```
-
+*waiting*
 ```
 ### Récuperer la liste des ports en écoute.
 ```

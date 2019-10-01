@@ -279,3 +279,131 @@ public (active)
 J'ai donc autorisé le port 2222 a communiquer a travers le firewall.
 #### Analyse des trames de connexion au serveur SSH.
 ## III Routage simple.
+### Tableau récapitulatif des IPs
+| Machine | NAT             | net1       | net2       |
+|---------|-----------------|------------|------------|
+| Router  | 192.168.176.169 | 10.0.0.254 | 10.1.1.254 |
+| VM1     |        X        |  10.0.0.10 |      X     |
+| VM2     |        X        |      X     |  10.1.1.10 |
+### Configuration de VM1
+```
+TYPE="Ethernet"
+BOOTPROTO="static"
+NAME="ens33"
+UUID="8e0ac214-14aa-47f6-85f4-1ae17d70349d"
+DEVICE="ens33"
+ONBOOT="yes"
+IPADDR=10.0.0.10
+NETMASK=255.255.255.0
+GATEWAY=10.0.0.254
+DNS1=10.0.0.254
+DNS2=8.8.8.8
+```
+### Configuration de VM2
+```
+TYPE="Ethernet"
+BOOTPROTO="static"
+NAME="ens33"
+UUID="8e0ac214-14aa-47f6-85f4-1ae17d70349d"
+DEVICE="ens33"
+ONBOOT="yes"
+IPADDR=10.1.1.10
+NETMASK=255.255.255.0
+GATEWAY=10.1.1.254
+DNS1=10.1.1.254
+DNS2=8.8.8.8
+```
+### Configuration de Router
+#### Carte réseau net1
+```
+IPADDR=10.0.0.254
+NETMASK=255.255.255.0
+ONBOOT=yes
+DEVICE=ens37
+NAME=ens37
+TYPE=Ethernet
+BOOTPROTO=static
+PROXY_METHOD=none
+BROWSER_ONLY=no
+PREFIX=24
+DNS1=8.8.8.8
+DNS2=1.1.1.1
+DNS3=1.0.0.1
+DEFROUTE=no
+IPV4_FAILURE_FATAL=yes
+IPV6INIT=no
+UUID=4a5516a4-dfa4-24af-b1c4-e843e312e2fd
+```
+#### Carte réseau net2
+```
+IPADDR=10.1.1.254
+NETMASK=255.255.255.0
+ONBOOT=yes
+DEVICE=ens38
+NAME=ens38
+TYPE=Ethernet
+BOOTPROTO=static
+PROXY_METHOD=none
+BROWSER_ONLY=no
+PREFIX=24
+DNS1=8.8.8.8
+DNS2=1.1.1.1
+DNS3=1.0.0.1
+```
+#### Carte réseau NAT
+Elle est configuré en DHCP et donc prend automatiquement un IP donné par mon virtualiseur préféré.
+### Preuve que VM1 passe par le router.
+```
+[nawak@VM1 ~]$ traceroute www.google.com
+traceroute to www.google.com (172.217.19.228), 30 hops max, 60 byte packets
+ 1  _gateway (10.0.0.254)  1.281 ms  1.228 ms  1.190 ms
+ 2  192.168.176.2 (192.168.176.2)  1.060 ms  1.019 ms  0.981 ms
+```
+Sur la requête traceroute vers www.google.com on vois que le premier saut se dirige vers le router (10.0.0.254) et après se dirige vers la gateway du réseau NAT du router pour acceder a internet.
+## IV
+### 1. Commandes
+```
+[nawak@VM1 ~]$ iftop
+-bash: iftop: command not found
+```
+C'est comme offrir un jouer sans pile a un enfant a noel.
+Sinon plus serieusement iftop permet de surveiller le trafic entrant et sortant sur une interface donner. On pourrait s'en servir pour verifier si des connexions son effectuer sur notre machine et ça peut être un problème si ce sont des connexions inattendu.
+
+### 2. Cockpit
+Cockpit est un outil d'administration système accéssible via un service web. Il permet de gerer les disques de monitorer le CPU, la RAM, la bande passante etc... Il dispose même d'un terminal INCROYABLE. Et on peux aussi ajouter plusieurs serveur disposant de cockpit et les gerers d'une seule interface web.
+
+Pour savoir quel port écouté Cockpit on exécute la commande suivante:
+```
+[nawak@VM1 ~]$ ss | grep cockpit
+[nawak@VM1 ~]$ ss | grep 9090
+```
+Ha bah nan il veut pas heuresement que je l'utilise deja personellement.
+J'ai bien sur ouvert le port 9090 sur mon firewall
+```
+[nawak@VM1 ~]$ sudo firewall-cmd --list-all
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: ens33
+  sources:
+  services: cockpit dhcpv6-client ssh
+  ports: 22/tcp 9090/tcp
+  protocols:
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+```
+🌞 Exploration de Cockpit.
+### 3. Netdata
+il faut cloner le repository netdata
+```
+git clone https://github.com/firehol/netdata.git --depth=1
+```
+Puis dans le dossier netdata il y a un executable qui installe tout seul netdata.
+On autorise aussi le port 19999 a travers le firewall
+```
+[nawak@VM1 netdata]$ sudo firewall-cmd --add-port=19999/tcp --permanent 
+[nawak@VM1 netdata]$ sudo firewall-cmd --reload
+```

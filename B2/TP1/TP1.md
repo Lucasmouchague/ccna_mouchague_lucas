@@ -229,7 +229,7 @@ PING 10.1.1.100 (10.1.1.100) 56(84) bytes of data.
 4 packets transmitted, 4 received, 0% packet loss, time 3077ms
 rtt min/avg/max/mdev = 0.467/0.493/0.529/0.022 ms
 ```
-###2. Serveur SSH :
+### 2. Serveur SSH :
 #### Modification de la configuration SSH.
 ```
 [nawak@cor91-h02-176-136-150-129 ~]$ sudo cat /etc/ssh/sshd_config 

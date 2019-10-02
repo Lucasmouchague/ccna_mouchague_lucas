@@ -216,7 +216,7 @@ Permanent HW addr: 00:0c:29:64:ac:71
 Slave queue ID: 0
 ```
 
-Preuve du fonctionnement :
+Preuve du fonctionnement on ping l'adresse de bond0 pour verifier on peut aussi se connecter en ssh a cette IP :
 ```
 nawak@T460:/media/nawak/ynov/reseau$ ping -c 4 10.1.1.100
 PING 10.1.1.100 (10.1.1.100) 56(84) bytes of data.

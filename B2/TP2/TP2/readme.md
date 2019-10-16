@@ -1,6 +1,6 @@
 # TP2 : Network low-level, Switching
 ## Disclaimer 
-J'ai eu un petit problème avec mon laptop j'ai du le remettre a zero et j'ai perdu tous mes projets GNS3 et mes screens. J'ai eu le temps de reprendre des screens pour la première étape mais pas pour le reste sorry.
+J'ai eu un petit problème avec mon laptop j'ai du le remettre a zero et j'ai perdu tous mes projets GNS3 et mes screens. J'avais une backup de mon MD et j'ai eu le temps de reprendre des screens pour la première étape mais pas pour le reste sorry.
 ## I. Simplest setup
 ### Mise en place
 ![alt text](simplestsetup.png)

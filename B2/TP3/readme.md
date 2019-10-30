@@ -356,18 +356,18 @@ Extended IP access list 192
 ```
 #### Tableau de correspondance ACL --> Subnet
 
-ACL 100 --> 10.4.50.0 (Serveurs)
-<\br>ACL 110 --> 10.4.60.0 (Serveurs Safe)
-<\br>ACL 120 --> 10.4.41.0 (Printer R1)
-<\br>ACL 130 --> 10.4.44.0 (Printer R4)
-<\br>ACL 140 --> 10.4.45.0 (Printer R5)
-<\br>ACL 150 --> 10.4.43.0 (Printer R3)
-<\br>ACL 160 --> 10.4.23.0 (Users R3)
-<\br>ACL 170 --> 10.4.24.0 (Users R4)
-<\br>ACL 180 --> 10.4.25.0 (Users R5)
-<\br>ACL 190 --> 10.4.33.0 (Stagiaires R3)
-<\br>ACL 191 --> 10.4.34.0 (Stagiaires R4)
-<\br>ACL 192 --> 10.4.35.0 (Stagiaires R5)
+ACL 100 --> 10.4.50.0 (Serveurs)  
+ACL 110 --> 10.4.60.0 (Serveurs Safe)  
+ACL 120 --> 10.4.41.0 (Printer R1)  
+ACL 130 --> 10.4.44.0 (Printer R4)  
+ACL 140 --> 10.4.45.0 (Printer R5)  
+ACL 150 --> 10.4.43.0 (Printer R3)  
+ACL 160 --> 10.4.23.0 (Users R3)  
+ACL 170 --> 10.4.24.0 (Users R4)  
+ACL 180 --> 10.4.25.0 (Users R5)  
+ACL 190 --> 10.4.33.0 (Stagiaires R3)  
+ACL 191 --> 10.4.34.0 (Stagiaires R4)  
+ACL 192 --> 10.4.35.0 (Stagiaires R5)
 
 ### La partie hard
 #### Emplacement des switchs et des routeurs

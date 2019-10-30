@@ -65,6 +65,8 @@ MTU:        : 1500
 
 ## II. Cas concret
 
+![Image](test.png)
+
 Table d'adressage (tous les réseaux sont /24) :
 
 | hostname | net10 | net23 | net24 | net25 | net33 | net34 | net35 | net41 | net43 | net44 | net45 | net50 | net60 |

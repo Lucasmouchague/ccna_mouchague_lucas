@@ -1,5 +1,5 @@
-#TP3 : Routage INTER-VLAN + mise en situation
-##I. Router-on-a-stick
+# TP3 : Routage INTER-VLAN + mise en situation
+## I. Router-on-a-stick
 ```
 PC1> show ip                    
 

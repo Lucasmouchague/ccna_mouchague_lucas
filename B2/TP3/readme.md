@@ -373,6 +373,9 @@ ACL 192 --> 10.4.35.0 (Stagiaires R5)
 
 ### La partie hard
 #### Emplacement des switchs et des routeurs
+
+![Image](https://external-preview.redd.it/58cUSNUZI20AWGhV2aWvh5LH_lM5z53JvHLtZzRagdU.jpg?auto=webp&s=31a3e458fbb3bb34741dbef5abb4e22a09c78855)
+
 J'ai décidé d'utiliser 2 switch et un routeur. J'ai essayé de réduire au maximum le coût materiel en réduisant a 2 le nombre de switch, je les ai placé dans la salle serveur avec le routeur car je pars du principe que seul les personnes habilité peuvent entrée dans cette salle et donc évité que la femme de ménage les débranche pour brancher son aspirateur ou alors que une personne mailveillante veuille changer les configurations du routeur ou des switch et donc d'avoir accées au serveurs sensible par exemple. J'ai aussi deux switch car un sers a la populace et l'autre sers a isoler physiquement les serveurs sensible.
 
 #### Longueur des câbles 

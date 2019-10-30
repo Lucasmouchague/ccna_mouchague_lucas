@@ -379,12 +379,11 @@ Nous avons 2 switch et un routeur donc on rajoute deux câbles supplémentaire (
 On a 40 câbles
 On a besoin de 8 câbles court ( tout ce qui relie switch 1 vers la salle serveur, le switch 2 et le routeur ), de 11 câbles moyen (Tout ce qui relie le switch 1 a la salle R1 et R3) et de 21 câbles long ( tout le reste ).
 
+#### Qui a accès à qui exactement ?
 
 * tous les postes ne peuvent joindre que l'imprimante de leur propre salle
 * les serveurs sensibles n'ont pas accès à internet
 * seul l'admin 1 (`A1`) a accès au serveur 4 (`SRV4`)
-
-#### Qui a accès à qui exactement ?** (à mettre en place dans un second temps)  
 
 ✅ = peuvent se joindre
 ❌ = ne peuvent pas se joindre
